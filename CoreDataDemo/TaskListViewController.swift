@@ -41,6 +41,9 @@ class TaskListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let alert = UIAlertController(title: "Editing task", message: "Enter new name", preferredStyle: .alert)
+        alert.view.backgroundColor = UIColor.blue
+        alert.view.layer.cornerRadius = 17
+        
         let saveAction = UIAlertAction(title: "Save task", style: .default) { _ in
             
             guard let taskName = alert.textFields?.first?.text, !taskName.isEmpty else { return }
@@ -55,7 +58,11 @@ class TaskListViewController: UITableViewController {
                     print(error.localizedDescription)
                 }
             }
+            
+            
         }
+        
+        
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
         alert.addAction(saveAction)
@@ -117,7 +124,8 @@ class TaskListViewController: UITableViewController {
     }
     
     @objc private func addNewTask() {
-        showAlert(with: "New Task", and: "What do you want to do?")
+        showAlert(with: "Your new Task", and: "Write your task here")
+        
     }
     
     
@@ -136,6 +144,9 @@ class TaskListViewController: UITableViewController {
         alert.addTextField { textField in
             textField.placeholder = "New Task"
         }
+
+        alert.view.backgroundColor = UIColor.blue
+        alert.view.layer.cornerRadius = 17
         present(alert, animated: true)
     }
     
